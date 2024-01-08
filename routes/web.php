@@ -22,19 +22,19 @@ use App\Http\Controllers\Admin\StudentController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
-
 // Route::get('/', function () {
-//     return view('welcome');
-// })->name('/');
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('/');
 
 Route::middleware([
     'auth:sanctum',

@@ -59,7 +59,9 @@
                                                 </label>
                                                 <select name="username" class="form-control"  data-placeholder="">
                                                     <option value="" disabled selected>select a user name</option>
-                                                    <option value="">aaaaaa</option>
+                                                    <option value="aaaaa">aaaaaa</option>
+                                                    <option value="" disabled selected>select a user name</option>
+                                                    <option value="bbbb">bbbb</option>
                                                 </select>
                                                 @error('username')<span class="text-danger f-s-12">{{$errors->first('username')}}</span> @enderror
                                             </div>
@@ -106,18 +108,18 @@
                                             <br/>
                                             <select name="gender" class="form-control"  data-placeholder="">
                                                 <option value="" disabled selected>select a gender name</option>
-                                                <option value="">Male</option>
-                                                <option value="">Female</option>
-                                                <option value="">Other</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
                                             </select>                                            @error('gender')<span class="text-danger f-s-12">{{$errors->first('gender')}}</span> @enderror
                                         </div>
 
-                                        <div class="col-md-4" id="datepicker1">
+                                        <div class="col-md-4" id="datepicker2">
                                             <label  class="form-label">
                                                 Joining Date
                                                 <i class="dripicons-question" data-bs-toggle="tooltip" data-bs-title="Set Your Joining Date" data-bs-placement="right"></i>
                                             </label>
-                                            <input type="text" data-provide="datepicker" data-date-container="#datepicker1" class="form-control" name="jod" placeholder="" value="{{ $errors->any() ? old('jod') : (isset($teacher)? $teacher->jod :'')}}">
+                                            <input type="text" data-provide="datepicker" data-date-container="#datepicker2" class="form-control" name="jod" placeholder="" value="{{ $errors->any() ? old('jod') : (isset($teacher)? $teacher->jod :'')}}">
                                             @error('jod')<span class="text-danger f-s-12">{{$errors->first('jod')}}</span> @enderror
                                         </div>
 
@@ -142,11 +144,11 @@
                                             </label>
                                             <select name="religion" class="form-control"  data-placeholder="">
                                                 <option value="" disabled selected>select a religion name</option>
-                                                <option value="">Islam</option>
-                                                <option value="">Hinduism</option>
-                                                <option value="">Buddhism</option>
-                                                <option value="">Christianity</option>
-                                                <option value="">Other</option>
+                                                <option value="islam">Islam</option>
+                                                <option value="hinduism">Hinduism</option>
+                                                <option value="buddhism">Buddhism</option>
+                                                <option value="chriastianity">Christianity</option>
+                                                <option value="other">Other</option>
                                             </select>                                            @error('religion')<span class="text-danger f-s-12">{{$errors->first('religion')}}</span> @enderror
                                         </div>
 

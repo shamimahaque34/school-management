@@ -43,7 +43,7 @@
                             @foreach($teachers as $teacher)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $teacher->username }}</td>
+                                    <td>{{ $teacher->name_english }}</td>
                                     <td>{{ $teacher->email }}</td>
                                     <td>{{ $teacher->phone }}</td>
                                     <td>{{ $teacher->designation_id }}</td>
@@ -57,7 +57,7 @@
                                     <td>{!! $teacher->address !!}</td>
                                     <td>{{ $teacher->username}}</td>
                                     <td>{{ $teacher->subject}}</td>
-                                     <td>
+                                     {{-- <td>
                                         <div class=d-flex>
                                         <a href="{{ route('teachers.edit',$teacher->id) }}" class="btn btn-info btn-sm ms-2"><i class="dripicons-document-edit"></i></a>
                                         <form action="{{ route('teachers.destroy', $teacher->id) }}" method="post" style="display: inline-block"  onsubmit="return confirm('Are You sure that to delete this Class'); ">
@@ -65,6 +65,20 @@
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm ms-2">
                                                 <i class="dripicons-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    </td> --}}
+
+                                    <td>
+                                        <div class=d-flex>
+                                        <a href="{{ route('teachers.edit',$teacher->id) }}" class="btn btn-info btn-sm ms-2"><i class="dripicons-document-edit"></i></a>
+                                        <form action="{{ route('teachers.destroy', $teacher->id) }}" method="post" style="display: inline-block" >
+                                            @csrf
+                                            {{-- @method('delete') --}}
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button type="submit"  class="btn btn-danger show-alert-delete-box btn-sm ms-2">
+                                                <i class="dripicons-trash" ></i>
                                             </button>
                                         </form>
                                     </div>
@@ -78,5 +92,76 @@
             </div>
         </div>
     </div>
+    @section('script')
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+
+        {{-- <script>
+            function confirmation(ev){
+                ev.preventDefault();
+                
+                // var urlToRedirect = ev.currentTarget.getAttribute('action');
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
+
+                // console.log(urlToRedirect);
+                swal({
+                    title : "are you sure to delete this",
+
+                    text : "you will not be able to revert this delete",
+
+                    icon : "warning",
+
+                    type: "warning",
+                    buttons: ["Cancel","Yes!"],
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                })
+
+                // .then((willCancel) =>{
+                // if(willCancel){
+
+                //     window.location.action = urlToRedirect;
+
+                //     console.log(urlToRedirect);
+
+                // }
+
+                .then((willDelete) => {
+            if (willDelete) {
+                form.submit();
+            }
+
+            });
+            }
+            
+        </script> --}}
+
+        
+<script type="text/javascript">
+    $('.show-alert-delete-box').click(function(event){
+        var form =  $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: "Are you sure you want to delete this record?",
+            text: "If you delete this, it will be gone forever.",
+            icon: "warning",
+            type: "warning",
+            buttons: ["Cancel","Yes!"],
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((willDelete) => {
+            if (willDelete) {
+                form.submit();
+            }
+        });
+    });
+    </script>
+    @endsection
 @endsection
 

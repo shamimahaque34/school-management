@@ -72,6 +72,11 @@ class TeacherController extends Controller
     public function destroy(string $id)
     {
         $this->teacher = Teacher::find($id);
+
+        if (file_exists($this->teacher->image)){
+            unlink($this->teacher->image);
+        }
+
         $this->teacher->delete();
         return back()->with('success', 'Teacher Deleted Successfully.');
     }
